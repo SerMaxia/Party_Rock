@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=IM+Fell+English:ital@0;1&family=MedievalSharp&display=swap');
+
+:root {
+  /* Wood Board */
+  --wood-base: #4a2b18; 
+  --wood-dark: #381f10;
+  
+  /* Paper & Bounty Notice */
+  --paper-bg: #f4ebd8;
+  --paper-edge: #dabb92;
+  --paper-dark: #e8dcc4;
+  
+  /* Text INK */
+  --ink-primary: #2d1e15;
+  --ink-secondary: #5c4433;
+  
+  /* Accents */
+  --red-wax: #a4241d;
+  --red-wax-hover: #c42f26;
+  --pin-metal: #555555;
+  
+  /* Typography */
+  --font-main: 'IM Fell English', Georgia, serif;
+  --font-heading: 'MedievalSharp', serif;
+  --font-handwriting: 'Caveat', cursive;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--wood-base);
+  /* A repeating strip to mimic vertical wooden planks on a tavern wall */
+  background-image: 
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.2)),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 98px,
+      rgba(0,0,0,0.7) 98px,
+      rgba(0,0,0,0.7) 100px
+    ),
+    repeating-linear-gradient(
+      180deg,
+      #4a2b18 0px,
+      #3e2313 40px,
+      #54321c 80px
+    );
+  color: var(--ink-primary);
+  min-height: 100vh;
+  box-shadow: inset 0 0 120px rgba(0,0,0,0.9);
+  background-attachment: fixed;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--ink-primary);
+  letter-spacing: 1px;
+}
+
+button {
+  font-family: var(--font-heading);
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+select, input {
+  font-family: var(--font-handwriting);
+  font-size: 1.2rem;
+  background: transparent;
+  border: 1px solid var(--ink-secondary);
+  color: var(--ink-primary);
+  padding: 4px;
+  cursor: pointer;
+  outline: none;
+}
+
+select:focus, input:focus {
+  border-color: var(--red-wax);
+}
+
+.glass-card {
+  /* Stripping previous containers natively */
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow: none;
+  border: none;
+}

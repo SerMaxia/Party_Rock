@@ -1,0 +1,679 @@
+.app-layout {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.app-header {
+  width: fit-content;
+  margin: 0 auto;
+  background-color: var(--paper-bg);
+  padding: 1.5rem 4rem;
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.7);
+  transform: rotate(-1deg);
+  border: 1px solid var(--paper-edge);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Wax seals/pins holding the banner text */
+.app-header::before,
+.app-header::after {
+  content: '';
+  position: absolute;
+  top: 15px;
+  width: 18px;
+  height: 18px;
+  background-color: var(--red-wax);
+  border-radius: 50%;
+  box-shadow: inset -3px -3px 5px rgba(0, 0, 0, 0.5), 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.app-header::before {
+  left: 15px;
+}
+
+.app-header::after {
+  right: 15px;
+}
+
+.rock-logo {
+  display: none;
+  /* Removed logo for pure text parchment look */
+}
+
+.title-container h1 {
+  font-size: 3.5rem;
+  color: var(--ink-primary);
+  margin-bottom: -10px;
+  text-transform: uppercase;
+}
+
+.title-container p {
+  font-family: var(--font-handwriting);
+  font-size: 1.8rem;
+  color: var(--red-wax);
+}
+
+.app-layout {
+  max-width: 1100px;
+  position: relative;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* ... candle positioning global rules ... */
+
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  /* Wide gap to distinguish the book and the pinned notes */
+  align-items: start;
+}
+
+@media (max-width: 800px) {
+  .main-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+.party-members,
+.suggestions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.party-container h2,
+.suggestion-container h2 {
+  font-size: 2.5rem;
+  color: #fff;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Ledger Book Aesthetics */
+.ledger-book {
+  background-color: #3b1c0d;
+  background-image:
+    repeating-linear-gradient(to bottom,
+      transparent,
+      transparent 15px,
+      rgba(0, 0, 0, 0.3) 15px,
+      rgba(0, 0, 0, 0.3) 18px);
+  padding: 3.5rem;
+  border-radius: 6px;
+  box-shadow:
+    inset 0 0 40px rgba(0, 0, 0, 0.9),
+    10px 15px 30px rgba(0, 0, 0, 0.8);
+  border: 4px solid #140702;
+  border-bottom: 15px solid #0a0301;
+  border-right: 8px solid #0d0401;
+  position: relative;
+  transform: rotate(1.5deg);
+}
+
+.ledger-book::before {
+  display: none;
+}
+
+.ledger-book h2 {
+  color: #fff;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
+  margin-bottom: 2.5rem;
+}
+
+.ledger-book .empty-state {
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+  font-style: italic;
+}
+
+.party-member-card,
+.suggestion-card {
+  background-color: var(--paper-bg);
+  padding: 1.5rem;
+  box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.6);
+  position: relative;
+  border: 1px solid var(--paper-edge);
+  transition: transform 0.6s ease-in-out, box-shadow 0.6s ease-in-out;
+  z-index: 1;
+  transform-origin: top center;
+}
+
+.party-member-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transform: perspective(800px) rotateX(0deg) rotate(0.5deg);
+}
+
+.suggestion-card {
+  transform: perspective(800px) rotateX(0deg) rotate(-0.5deg);
+  cursor: grab;
+}
+
+.suggestion-card.dragging {
+  cursor: grabbing !important;
+}
+
+/* Wrapper to hold the paper and the static pin */
+.paper-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* The metal pins independent of the card transform */
+.board-pin {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  background-color: var(--pin-metal);
+  border-radius: 50%;
+  box-shadow: inset -2px -2px 3px rgba(0, 0, 0, 0.7), 2px 2px 4px rgba(0, 0, 0, 0.9);
+  z-index: 20;
+  pointer-events: none;
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s;
+}
+
+.paper-wrapper.is-dragging .board-pin {
+  transform: translateX(-50%) translateY(-20px) scale(1.5);
+  opacity: 0;
+}
+
+.party-member-card:hover {
+  transform: perspective(800px) rotateX(4deg) rotate(0.5deg);
+  z-index: 10;
+  box-shadow: 3px 10px 18px rgba(0, 0, 0, 0.5);
+}
+
+.suggestion-card:hover {
+  z-index: 10;
+  transform: perspective(800px) rotateX(10deg) rotate(-0.5deg);
+  box-shadow: 4px 20px 28px rgba(0, 0, 0, 0.3);
+  animation: paperFlap 4s ease-in-out 1s infinite alternate;
+}
+
+@keyframes paperFlap {
+  0% {
+    transform: perspective(800px) rotateX(10deg) rotate(-0.5deg);
+    box-shadow: 4px 20px 28px rgba(0, 0, 0, 0.3);
+  }
+
+  100% {
+    transform: perspective(800px) rotateX(3deg) rotate(-0.5deg);
+    box-shadow: 3px 8px 12px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.member-icon,
+.suggestion-icon {
+  font-size: 2.5rem;
+}
+
+.member-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.member-class,
+.suggestion-header h3 {
+  font-size: 2rem;
+  color: var(--ink-primary);
+  font-family: var(--font-heading);
+}
+
+.member-subclass {
+  font-family: var(--font-main);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--ink-secondary);
+}
+
+.member-role,
+.suggestion-role {
+  font-family: var(--font-handwriting);
+  font-size: 1.4rem;
+  color: var(--red-wax);
+}
+
+.suggestion-reason {
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  border-top: 1px dashed var(--ink-secondary);
+  padding-top: 0.5rem;
+  font-family: var(--font-main);
+  color: var(--ink-secondary);
+}
+
+.remove-btn {
+  background: transparent;
+  color: var(--red-wax);
+  font-size: 1.5rem;
+  font-family: var(--font-handwriting);
+  align-self: flex-start;
+  transition: all 0.6s ease-in-out;
+}
+
+.remove-btn:hover {
+  text-shadow: 0 0 5px var(--red-wax);
+}
+
+/* Form Controls (Paper elements) */
+.add-controls {
+  background: var(--paper-dark);
+  padding: 1.5rem;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.6);
+  transform: rotate(1deg);
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  border: 1px solid var(--paper-edge);
+}
+
+.add-controls select,
+.inline-subclass-select {
+  flex: 1;
+  background: var(--paper-bg);
+}
+
+.inline-subclass-select {
+  max-width: 140px;
+  padding: 0;
+  font-size: 1.1rem;
+}
+
+.add-btn,
+.toggle-more-btn {
+  background: var(--red-wax);
+  color: #f4e8d3;
+  padding: 0.5rem 1.5rem;
+  border: 2px solid #571612;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.4);
+  font-size: 1.2rem;
+  transition: all 0.6s ease-in-out;
+}
+
+.add-btn:hover,
+.toggle-more-btn:hover {
+  background: var(--red-wax-hover);
+  transform: translateY(-1px);
+}
+
+.toggle-more-btn {
+  display: block;
+  margin: 1rem auto 0;
+}
+
+/* Range Edit toggle text */
+.range-edit-toggle {
+  color: var(--ink-secondary);
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s;
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+.range-edit-toggle:hover {
+  color: var(--ink-primary);
+  border-bottom: 1px dashed var(--ink-primary);
+}
+
+.range-edit-toggle .edit-icon {
+  opacity: 0;
+  margin-left: 0.2rem;
+  transition: opacity 0.2s;
+  font-size: 0.8rem;
+}
+
+.range-edit-toggle:hover .edit-icon {
+  opacity: 1;
+}
+
+/* Segmented Control / Ink Slider replacement */
+.segmented-control-container {
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.segmented-control {
+  display: flex;
+  border: 2px solid var(--ink-primary);
+  background: transparent;
+  border-radius: 0;
+}
+
+.segmented-track {
+  position: relative;
+  width: 100%;
+  display: flex;
+}
+
+.segmented-thumb {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 33.333%;
+  background: var(--ink-primary);
+  transition: left 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  border-radius: 0;
+  z-index: 1;
+}
+
+.segment-btn {
+  flex: 1;
+  color: var(--ink-secondary);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  padding: 0.3rem 0;
+  z-index: 2;
+  text-transform: uppercase;
+}
+
+.segment-btn.active {
+  color: var(--paper-bg);
+}
+
+/* Edge Effects (Torn, Burned, Chewed) */
+.edge-torn {
+  border-bottom: 3px dashed var(--paper-edge) !important;
+}
+
+.edge-burned {
+  box-shadow:
+    inset 0 -15px 20px -10px rgba(58, 21, 5, 0.8),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.4),
+    3px 5px 12px rgba(0, 0, 0, 0.6) !important;
+  border-bottom: 2px solid #291206 !important;
+  border-radius: 4px 4px 8px 15px !important;
+}
+
+.edge-chewed {
+  border-bottom-color: transparent !important;
+  border-radius: 2px 2px 30% 15% !important;
+}
+
+/* Ripping Animation */
+.ripping-anim {
+  animation: ripPoster 0.4s cubic-bezier(0.5, 0, 0.2, 1) forwards !important;
+  pointer-events: none;
+  z-index: 999 !important;
+  transition: none !important;
+  /* Stop the hover un-transition from fighting the animation */
+  border-color: var(--accent-secondary) !important;
+  box-shadow: 5px 8px 18px rgba(0, 0, 0, 0.8) !important;
+}
+
+.ripping-anim::after {
+  animation: popPin 0.25s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
+  transition: none !important;
+}
+
+@keyframes ripPoster {
+  0% {
+    transform: translate(0px, 0px) rotate(0deg) scale(1.02);
+    filter: brightness(1);
+  }
+
+  30% {
+    transform: translate(15px, -15px) rotate(15deg) scale(1.05);
+    filter: brightness(1.1);
+    box-shadow: 10px 15px 25px rgba(0, 0, 0, 0.9) !important;
+  }
+
+  60% {
+    transform: translate(-10px, 30px) rotate(-10deg) scale(1.02);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translate(150px, 300px) rotate(45deg) scale(0.5);
+    opacity: 0;
+    filter: blur(5px);
+  }
+}
+
+@keyframes popPin {
+  0% {
+    transform: translateX(-50%) translateY(0) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(-50%) translateY(-30px) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Candle Drop Zone */
+.candle-dropzone {
+  position: absolute;
+  top: 1.5rem;
+  left: 2.5rem;
+  width: 70px;
+  height: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 5;
+}
+
+.candle-body {
+  width: 25px;
+  height: 60px;
+  background: linear-gradient(to right, #b4a78c, #d5ceb3, #9e9171);
+  border-radius: 4px 4px 0 0;
+  box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.8);
+  position: relative;
+  /* Correction : Bougie passe derrière le socle */
+  z-index: 1;
+}
+
+.candle-body::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: #e6e2cd;
+  border-radius: 50%;
+  box-shadow: inset 0 -2px 3px rgba(0, 0, 0, 0.5);
+}
+
+.wax-drip {
+  position: absolute;
+  top: 8px;
+  left: -1px;
+  width: 5px;
+  height: 25px;
+  background: linear-gradient(to bottom, #d5ceb3, #b4a78c);
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.wax-drip::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: -22px;
+  width: 4px;
+  height: 35px;
+  background: linear-gradient(to bottom, #d5ceb3, #9e9171);
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.candle-holder {
+  position: relative;
+  margin-top: -3px;
+  /* Correction : Socle devant le corps de la bougie */
+  z-index: 2;
+}
+
+.holder-base {
+  width: 40px;
+  height: 12px;
+  background: linear-gradient(to bottom, #bd954d, #735727);
+  border-radius: 50% 50% 10% 10% / 100% 100% 20% 20%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.9), inset 0px 2px 3px rgba(255, 230, 150, 0.4);
+  border: 1px solid #4a3818;
+  position: relative;
+}
+
+.holder-base::before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: -15px;
+  width: 70px;
+  height: 18px;
+  background: linear-gradient(to right, #735727, #c99f53, #5a421a);
+  border-radius: 50%;
+  /* Correction : La plaque est devant la base */
+  z-index: 3;
+  /* Correction : Pivot sur l'axe X (vertical) */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.9), inset 0 -2px 6px rgba(0, 0, 0, 0.6);
+  border: 1px solid #3d2d11;
+}
+
+.holder-handle {
+  position: absolute;
+  top: -10px;
+  right: -26px;
+  width: 25px;
+  height: 18px;
+  border: 4px solid #8f6e35;
+  border-radius: 0 15px 15px 0;
+  border-left: none;
+  /* Correction : Pivot sur l'axe X (vertical) */
+  transform: scaleY(-1);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7), inset 1px -1px 2px rgba(255, 255, 255, 0.2);
+  z-index: -2;
+}
+
+.flame {
+  width: 14px;
+  height: 28px;
+  background: radial-gradient(ellipse at bottom, #fff 10%, #ffeb3b 30%, #ff9800 60%, transparent 80%);
+  border-radius: 50% 50% 20% 20%;
+  animation: flicker 0.15s infinite alternate;
+  box-shadow: 0 0 15px #ff9800, 0 0 30px #ffeb3b;
+  margin-bottom: 0px;
+  position: relative;
+  top: 4px;
+  /* La flamme reste devant tout */
+  z-index: 4;
+  transition: all 0.2s;
+}
+
+.candle-dropzone.glow .flame {
+  transform: scale(2) translateY(-5px) !important;
+  animation: flicker 0.05s infinite alternate;
+  box-shadow: 0 0 40px 10px #ff9800, 0 0 80px 20px #ffeb3b;
+}
+
+@keyframes flicker {
+  0% {
+    transform: scale(1) rotate(-1deg);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: scale(1.1) rotate(2deg);
+    opacity: 1;
+  }
+}
+
+/* Burning Animation */
+.burning-anim {
+  animation: burnPoster 0.6s ease-in forwards !important;
+  pointer-events: none;
+  transition: none !important;
+  z-index: 999 !important;
+}
+
+@keyframes burnPoster {
+  0% {
+    transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(1);
+    filter: brightness(1) sepia(0);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translate(calc(var(--dx) + 15px), calc(var(--dy) + 40px)) rotate(var(--rot)) scale(0.6);
+    filter: brightness(0.2) sepia(1) hue-rotate(-40deg) saturate(8);
+    opacity: 0.8;
+    box-shadow: 0 0 50px 10px rgba(255, 150, 0, 0.8) !important;
+    border-color: #ff9800 !important;
+  }
+
+  100% {
+    transform: translate(calc(var(--dx) + 30px), calc(var(--dy) + 80px)) rotate(var(--rot)) scale(0.1);
+    filter: brightness(0) sepia(1);
+    opacity: 0;
+  }
+}
+
+/* Nailing Animation */
+.nailing-anim {
+  animation: slamPaper 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
+  pointer-events: none;
+  transition: none !important;
+  z-index: 999 !important;
+}
+
+@keyframes slamPaper {
+  0% {
+    transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(1.1);
+    box-shadow: 15px 25px 30px rgba(0, 0, 0, 0.8);
+  }
+
+  30% {
+    transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(1.05);
+    box-shadow: 8px 15px 20px rgba(0, 0, 0, 0.7);
+  }
+
+  100% {
+    transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(0.85);
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.9);
+    filter: brightness(0.8);
+  }
+}
+
+.paper-wrapper.is-nailing .board-pin {
+  animation: slamPin 0.45s cubic-bezier(0.8, 0, 1, 1) forwards !important;
+  opacity: 1;
+}
+
+@keyframes slamPin {
+  0% {
+    transform: translate(calc(-50% + var(--dx, 0px)), calc(-200px + var(--dy, 0px))) scale(4);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(calc(-50% + var(--dx, 0px)), var(--dy, 0px)) scale(1);
+    opacity: 1;
+    box-shadow: inset -2px -2px 3px rgba(0, 0, 0, 0.9), 5px 5px 15px rgba(0, 0, 0, 0.9);
+  }
+}
