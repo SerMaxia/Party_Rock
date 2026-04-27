@@ -399,10 +399,11 @@
 
 .segmented-thumb {
   position: absolute;
-  top: 0;
-  bottom: 0;
+  top: -2px; /* Pull up to overlap border */
+  bottom: -2px;
   width: 33.333%;
-  background: var(--red-wax);
+  background: rgba(0, 0, 0, 0.04);
+  border: 2px solid var(--ink-primary);
   transition: left 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   border-radius: 0;
   z-index: 1;
@@ -416,12 +417,15 @@
   padding: 0.3rem 0;
   z-index: 2;
   text-transform: uppercase;
-  transition: color 0.3s;
+  transition: all 0.3s;
+  opacity: 0.6;
 }
 
 .segment-btn.active {
-  color: #fff;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  color: var(--ink-primary);
+  opacity: 1;
+  font-weight: bold;
+  text-shadow: none;
 }
 
 /* Edge Effects (Torn, Burned, Chewed) */
