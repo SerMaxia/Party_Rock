@@ -45,6 +45,14 @@ export const dndClasses = [
       { id: "whispers", name: "College of Whispers", role: coreRoles.STRIKER, range: ranges.RANGED }
     ]
   },
+  { id: "bloodhunter", name: "Blood Hunter", role: coreRoles.STRIKER, range: ranges.FLEXIBLE, icon: "🩸",
+    subclasses: [
+      { id: "ghostslayer", name: "Order of the Ghostslayer", role: coreRoles.STRIKER, range: ranges.FLEXIBLE },
+      { id: "lycan", name: "Order of the Lycan", role: coreRoles.TANK, range: ranges.MELEE },
+      { id: "mutant", name: "Order of the Mutant", role: coreRoles.STRIKER, range: ranges.FLEXIBLE },
+      { id: "profanesoul", name: "Order of the Profane Soul", role: coreRoles.UTILITY, range: ranges.FLEXIBLE }
+    ]
+  },
   { id: "cleric", name: "Cleric", role: coreRoles.SUPPORT, range: ranges.FLEXIBLE, icon: "✨",
     subclasses: [
       { id: "arcana", name: "Arcana Domain", role: coreRoles.UTILITY, range: ranges.RANGED },

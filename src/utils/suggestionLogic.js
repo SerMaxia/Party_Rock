@@ -52,11 +52,20 @@ export function getSuggestions(partyMembers) {
     const cleric = dndClasses.find(c => c.id === "cleric");
     const wizard = dndClasses.find(c => c.id === "wizard");
     
-    return [
-      { class: fighter, subclass: null, role: fighter.role, range: fighter.range, edgeMode: 'torn', reason: "A core frontliner. Every party needs a sturdy backbone to start with." },
-      { class: cleric, subclass: null, role: cleric.role, range: cleric.range, edgeMode: 'burned', reason: "A core support. Starting with a support ensures survivability." },
-      { class: wizard, subclass: null, role: wizard.role, range: wizard.range, edgeMode: 'chewed', reason: "A master of control. A strong utility caster sets the stage for a creative campaign." }
+    const baseList = [
+      { class: fighter, subclass: null, role: fighter.role, range: fighter.range, edgeMode: 'torn', reason: "A core frontliner. Every party needs a sturdy backbone to start with.", score: 100 },
+      { class: cleric, subclass: null, role: cleric.role, range: cleric.range, edgeMode: 'burned', reason: "A core support. Starting with a support ensures survivability.", score: 99 },
+      { class: wizard, subclass: null, role: wizard.role, range: wizard.range, edgeMode: 'chewed', reason: "A master of control. A strong utility caster sets the stage for a creative campaign.", score: 98 }
     ];
+
+    const otherClasses = dndClasses
+      .filter(c => c.id !== "fighter" && c.id !== "cleric" && c.id !== "wizard")
+      .map(c => ({
+        class: c, subclass: null, role: c.role, range: c.range, edgeMode: 'torn', reason: `A solid starting choice. The ${c.name} brings great ${c.role.split('/')[0].trim().toLowerCase()} capabilities.`, score: Math.random() * 50
+      }))
+      .sort((a, b) => b.score - a.score);
+
+    return [...baseList, ...otherClasses];
   }
 
   const { roles, ranges: partyRanges } = analyzeParty(partyMembers);
