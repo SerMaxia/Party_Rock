@@ -32,6 +32,7 @@
   background-color: var(--red-wax);
   border-radius: 50%;
   box-shadow: inset -3px -3px 5px rgba(0, 0, 0, 0.5), 2px 2px 4px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s;
 }
 
 .app-header::before {
@@ -40,6 +41,27 @@
 
 .app-header::after {
   right: 15px;
+}
+
+.app-header {
+  transition: transform 0.6s ease-in-out, box-shadow 0.6s ease-in-out;
+  transform-origin: top center;
+}
+
+.app-header:hover {
+  transform: perspective(800px) rotateX(10deg) rotate(-1deg);
+  box-shadow: 4px 20px 28px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  animation: paperFlap 4s ease-in-out 1s infinite alternate;
+}
+
+.app-header.dragging::before,
+.app-header.burning-anim::before,
+.app-header.dragging::after,
+.app-header.burning-anim::after {
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.25s;
+  transform: translateY(-30px) scale(1.5);
+  opacity: 0;
 }
 
 .rock-logo {
