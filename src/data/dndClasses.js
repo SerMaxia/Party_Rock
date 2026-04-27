@@ -41,6 +41,7 @@ export const dndClasses = [
       { id: "lore", name: "College of Lore", role: coreRoles.UTILITY, range: ranges.RANGED },
       { id: "spirits", name: "College of Spirits", role: coreRoles.SUPPORT, range: ranges.RANGED },
       { id: "swords", name: "College of Swords", role: coreRoles.STRIKER, range: ranges.MELEE },
+      { id: "tragedy", name: "College of Tragedy", role: coreRoles.UTILITY, range: ranges.RANGED },
       { id: "valor", name: "College of Valor", role: coreRoles.SUPPORT, range: ranges.FLEXIBLE },
       { id: "whispers", name: "College of Whispers", role: coreRoles.STRIKER, range: ranges.RANGED }
     ]
@@ -56,6 +57,7 @@ export const dndClasses = [
   { id: "cleric", name: "Cleric", role: coreRoles.SUPPORT, range: ranges.FLEXIBLE, icon: "✨",
     subclasses: [
       { id: "arcana", name: "Arcana Domain", role: coreRoles.UTILITY, range: ranges.RANGED },
+      { id: "blood", name: "Blood Domain", role: coreRoles.STRIKER, range: ranges.MELEE },
       { id: "death", name: "Death Domain", role: coreRoles.STRIKER, range: ranges.MELEE },
       { id: "forge", name: "Forge Domain", role: coreRoles.TANK, range: ranges.MELEE },
       { id: "grave", name: "Grave Domain", role: coreRoles.SUPPORT, range: ranges.RANGED },
@@ -90,6 +92,7 @@ export const dndClasses = [
       { id: "champion", name: "Champion", role: coreRoles.STRIKER, range: ranges.FLEXIBLE },
       { id: "echo", name: "Echo Knight", role: coreRoles.STRIKER, range: ranges.MELEE },
       { id: "eldritch", name: "Eldritch Knight", role: coreRoles.TANK, range: ranges.MELEE },
+      { id: "gunslinger", name: "Gunslinger", role: coreRoles.STRIKER, range: ranges.RANGED },
       { id: "psiwarrior", name: "Psi Warrior", role: coreRoles.UTILITY, range: ranges.FLEXIBLE },
       { id: "purpledragon", name: "Purple Dragon Knight", role: coreRoles.SUPPORT, range: ranges.MELEE },
       { id: "runeknight", name: "Rune Knight", role: coreRoles.TANK, range: ranges.MELEE },
@@ -100,6 +103,7 @@ export const dndClasses = [
     subclasses: [
       { id: "ascendantdragon", name: "Way of the Ascendant Dragon", role: coreRoles.STRIKER, range: ranges.MELEE },
       { id: "astralself", name: "Way of the Astral Self", role: coreRoles.UTILITY, range: ranges.MELEE },
+      { id: "cobaltsoul", name: "Way of the Cobalt Soul", role: coreRoles.UTILITY, range: ranges.MELEE },
       { id: "drunkenmaster", name: "Way of the Drunken Master", role: coreRoles.STRIKER, range: ranges.MELEE },
       { id: "fourelements", name: "Way of the Four Elements", role: coreRoles.UTILITY, range: ranges.FLEXIBLE },
       { id: "kensei", name: "Way of the Kensei", role: coreRoles.STRIKER, range: ranges.FLEXIBLE },
@@ -117,6 +121,7 @@ export const dndClasses = [
       { id: "crown", name: "Oath of the Crown", role: coreRoles.TANK, range: ranges.MELEE },
       { id: "devotion", name: "Oath of Devotion", role: coreRoles.TANK, range: ranges.MELEE },
       { id: "glory", name: "Oath of Glory", role: coreRoles.SUPPORT, range: ranges.MELEE },
+      { id: "opensea", name: "Oath of the Open Sea", role: coreRoles.UTILITY, range: ranges.MELEE },
       { id: "oathbreaker", name: "Oathbreaker", role: coreRoles.STRIKER, range: ranges.MELEE },
       { id: "redemption", name: "Oath of Redemption", role: coreRoles.SUPPORT, range: ranges.MELEE },
       { id: "vengeance", name: "Oath of Vengeance", role: coreRoles.STRIKER, range: ranges.MELEE },
@@ -155,6 +160,7 @@ export const dndClasses = [
       { id: "divinesoul", name: "Divine Soul", role: coreRoles.SUPPORT, range: ranges.RANGED },
       { id: "draconic", name: "Draconic Bloodline", role: coreRoles.STRIKER, range: ranges.RANGED },
       { id: "lunar", name: "Lunar Sorcery", role: coreRoles.UTILITY, range: ranges.RANGED },
+      { id: "runechild", name: "Runechild", role: coreRoles.STRIKER, range: ranges.RANGED },
       { id: "shadowmagic", name: "Shadow Magic", role: coreRoles.UTILITY, range: ranges.RANGED },
       { id: "storm", name: "Storm Sorcery", role: coreRoles.STRIKER, range: ranges.RANGED },
       { id: "wild", name: "Wild Magic", role: coreRoles.UTILITY, range: ranges.RANGED }
