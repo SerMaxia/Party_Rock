@@ -402,7 +402,7 @@
   top: 0;
   bottom: 0;
   width: 33.333%;
-  background: var(--ink-primary);
+  background: var(--red-wax);
   transition: left 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   border-radius: 0;
   z-index: 1;
@@ -416,10 +416,12 @@
   padding: 0.3rem 0;
   z-index: 2;
   text-transform: uppercase;
+  transition: color 0.3s;
 }
 
 .segment-btn.active {
-  color: var(--paper-bg);
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
 /* Edge Effects (Torn, Burned, Chewed) */
