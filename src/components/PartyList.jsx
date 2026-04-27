@@ -179,7 +179,7 @@ export default function PartyList({ party, setParty }) {
               >
                 <span className="member-icon">{cls.icon}</span>
                 <div className="member-details" style={{ width: '100%', paddingRight: '0.5rem' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem', gap: '0.5rem' }}>
                     <span>
                       <span className="member-class">{cls.name}</span>
                       <span className="member-role" style={{ display: 'block', marginTop: '2px' }}>
